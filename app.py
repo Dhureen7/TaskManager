@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 from flask_mysqldb import MySQL
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:''@localhost/dbname'  # Example URI for MySQL
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:''@localhost/dbname'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Disable tracking modifications (optional but recommended)
 
 db = SQLAlchemy(app)
@@ -18,9 +18,8 @@ class ToDo(db.Model):
     def __repr__(self):
         return '<Task %r>' % self.id
 
-# Ensure you are operating within the Flask application context
+# Comment out the following 2 lines after initialising the table in your database, these lines will only be required again if you are making changes to the table structure
 # with app.app_context():
-    # Now you can access app-specific features, such as database operations
     # db.create_all()
 
 @app.route('/', methods=['POST', 'GET'])
